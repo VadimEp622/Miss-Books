@@ -13,7 +13,10 @@ export const bookService = {
 }
 
 function query() {
-    return storageService.query(BOOK_KEY)
+    storageService.query(BOOK_KEY)
+    .then((book) => {
+        return book
+    })
 }
 
 
