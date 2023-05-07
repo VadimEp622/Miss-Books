@@ -1,7 +1,7 @@
 import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
 import { BookDetails } from '../views/book-details.jsx'
-import {  BookFilter  } from '../cmps/book-filter.jsx'
+import { BookFilter } from '../cmps/book-filter.jsx'
 import { BookEdit } from '../cmps/book-edit.jsx'
 // import { func } from 'prop-types'
 
@@ -15,14 +15,11 @@ export function BookIndex() {
 
     useEffect(() => {
         loadBooks()
-
     }, [filterBy])
 
     function loadBooks() {
-        bookService.query()
-            .then((books) =>
-                setBooks(books)
-            )
+        bookService.query(filterBy)
+            .then(books => setBooks(books))
     }
 
     function onRemoveBook(bookId) {
@@ -42,7 +39,7 @@ export function BookIndex() {
 
     //create new book
     function onCreateBook(name, value) {
-       
+
     }
 
 

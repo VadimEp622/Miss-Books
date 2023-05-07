@@ -461,12 +461,13 @@ function query(filterBy = {}) {
     return storageService.query(BOOK_KEY)
         .then(books => {
             if (filterBy.name) {
+                console.log('books', books)
                 const regExp = new RegExp(filterBy.name, 'i')
-                books = books.filter(book => regExp.test(book.name))
+                books = books.filter(book => regExp.test(book.title))
             }
 
             if (filterBy.price) {
-                books = books.filter(book => book.price >= filterBy.price)
+                books = books.filter(book => book.listPrice.amount >= filterBy.price)
             }
             return books
         })
