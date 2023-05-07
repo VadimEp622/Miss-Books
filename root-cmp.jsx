@@ -2,6 +2,7 @@ const { useState } = React
 
 import { About } from "./views/about.jsx"
 import { BookIndex } from "./views/book-index.jsx"
+import { BookIndex } from "./views/book-index.jsx"
 import { Home } from "./views/home.jsx"
 
 export function App() {
@@ -21,12 +22,12 @@ export function App() {
                     <a onClick={() => handlePageChange('home')} href="#">Home</a> |
                     <a onClick={() => handlePageChange('book index')} href="#">Book Index</a> |
                     <a onClick={() => handlePageChange('about')} href="#">About</a>
+                    <a onClick={() => handlePageChange('book')} href="#">Books</a>
                 </nav>
             </header>
             <main>
                 {page === 'home' && <Home />}
                 {page === 'about' && <About />}
-                {page === 'book index' && <BookIndex />}
             </main>
         </section>
     )
