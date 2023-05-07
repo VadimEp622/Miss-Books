@@ -1,8 +1,9 @@
-export function BookPreview(props){
+export function BookPreview({ book }) {
     return (
         <article className="book-preview">
-            <h2>Car Vendor: {props.book.name}</h2>
-            <h4>Max Speed: {props.book.price}</h4>
+            <h2>Title: {book.title}</h2>
+            <h4>Subtitle: {book.subtitle}</h4>
+            <h4>Description {book.description}</h4>
         </article>
     )
 }
