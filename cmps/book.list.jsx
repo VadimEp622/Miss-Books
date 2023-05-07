@@ -7,7 +7,7 @@ export function BookList(props) {
             {props.books.map(book =>
                 <li key={book.id}>
                     <BookPreview book={book} />
-                    <section>
+                    <section className="flex">
                         <button onClick={() => onRemoveBook(book.id)} >Remove Book</button>
                         <button onClick={() => onSelectBook(book)} >Select Book</button>
                     </section>
