@@ -20,14 +20,12 @@ export function BookIndex() {
             )
     }
 
-    // function onSelectCar(book){
-    //     setSelectedCar(book)
-    // }
+    
 
     return (
         <section className="book-list">
             <h1>Hello from book Index</h1>
-            <BookList onSelectBook={onSelectBook} books={books} onRemoveBook={onRemoveBook} />
+            <BookList  books={books}  />
 
         </section>
     )
