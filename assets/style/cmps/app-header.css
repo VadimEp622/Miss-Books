@@ -1,0 +1,21 @@
+.app-header {
+    background-color: var(--clr1);
+    color: var(--clr2bg-light);
+    
+}
+
+.app-nav {
+    display: flex;
+    gap: 15px;
+    padding-block: 15px;
+    font-size: 1.3em;
+}
+
+
+
+
+@media (max-width: 720px) {
+    .app-header {
+        color: var(--clr2bg-light);
+    }
+}
