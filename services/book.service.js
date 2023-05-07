@@ -14,9 +14,7 @@ export const bookService = {
 
 function query() {
     storageService.query(BOOK_KEY)
-    .then((book) => {
-        return book
-    })
+    .then((book) => book)
 }
 
 
@@ -33,6 +31,7 @@ function removeBook(bookId) {
 // create demo data for books
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
+    
     if (!books || !books.length) {
         books = []
         books.push(_createBook('lord of the rings', 150))

@@ -6,7 +6,7 @@ import { Home } from "./views/home.jsx"
 
 export function App() {
 
-    const [page, setPage] = useState('home')
+    const [page, setPage] = useState('book index')
 
 
     function handlePageChange(page) {
