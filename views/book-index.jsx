@@ -32,6 +32,8 @@ export function BookIndex() {
         setSelectedBook(book)
     }
 
+    // function getPageAmountDesc(amount){ }
+
     return (
 
         <section>
