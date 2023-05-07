@@ -1,3 +1,4 @@
+import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
 
 const { useEffect, useState } = React
@@ -5,6 +6,7 @@ const { useEffect, useState } = React
 export function BookIndex() {
 
     const [books, setBooks] = useState([])
+    const [selectedBook, setSelectedBook] = useState(null)
 
     useEffect(() => {
         loadBooks()
@@ -18,16 +20,14 @@ export function BookIndex() {
             )
     }
 
+    // function onSelectCar(book){
+    //     setSelectedCar(book)
+    // }
+
     return (
         <section className="book-list">
             <h1>Hello from book Index</h1>
-            {books.map((book) => {
-                return (
-                    <ul>
-                        <li>{book.name}</li>
-                    </ul>
-                )
-            })}
+            <BookList onSelectBook={onSelectBook} books={books} onRemoveBook={onRemoveBook} />
 
         </section>
     )
