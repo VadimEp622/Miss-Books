@@ -20,13 +20,22 @@ export function BookIndex() {
             )
     }
 
-    
+    function onRemoveBook(bookId) {
+        bookService.remove(bookId).then(() => {
+            const updatedBooks = books.filter(book => book.id !== bookId)
+            setBooks(updatedBooks)
+        })
+    }
+
+    function onSelectCar(car){
+        setSelectedCar(car)
+    }
 
     return (
-        <section className="book-list">
-            <h1>Hello from book Index</h1>
-            <BookList  books={books}  />
-
+        <section>
+            {/* <CarFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
+            {/* <CarList onSelectCar={onSelectCar} cars={cars} onRemoveCar={onRemoveCar} /> */}
+            <BookList books={books} onSelectbook={onSelectBook} onRemoveBook={onRemoveBook} />
         </section>
     )
 }
