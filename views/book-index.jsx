@@ -45,10 +45,9 @@ export function BookIndex() {
        
     }
 
-    // function getPageAmountDesc(amount){ }
 
     return (
-        <section>
+        <section className="book-index">
             {!selectedBook && <React.Fragment>
                 <BookEdit onCreateBook={onCreateBook} />
                 <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
