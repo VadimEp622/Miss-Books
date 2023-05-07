@@ -41,6 +41,7 @@
 
 .book-details h5 {
     color: var(--clr2);
+    font-size: 1.2em;
 }
 
 .book-product-details h5 article > * {
