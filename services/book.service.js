@@ -445,18 +445,35 @@ const BOOKS = [
 
 const BOOK_KEY = 'bookDB'
 
-_createBooks2()
+_createBooks()
 
 export const bookService = {
     query,
     get,
     remove,
+    getDefaultFilter,
 
 }
 
-function query() {
+function query(filterBy = {}) {
+    
     return storageService.query(BOOK_KEY)
-        .then((book) => book)
+        .then(books => {
+            if (filterBy.name) {
+                const regExp = new RegExp(filterBy.name, 'i')
+                books = books.filter(book => regExp.test(book.name))
+            }
+
+            if (filterBy.price) {
+                books = books.filter(book => book.price >= filterBy.price)
+            }
+            return books
+        })
+}
+
+
+function getDefaultFilter() {
+    return { name: '', price: '' }
 }
 
 // get book
@@ -474,20 +491,6 @@ function remove(bookId) {
 
 //------PRIVATE FUNCTIONS------//
 
-// create demo data for books
-function _createBooks() {
-    let books = utilService.loadFromStorage(BOOK_KEY)
-
-    if (!books || !books.length) {
-        books = []
-        books.push(_createBook('lord of the rings', 150))
-        books.push(_createBook('harry potter', 100))
-        books.push(_createBook('the zohan', 300))
-        books.push(_createBook('freedom', 500))
-        utilService.saveToStorage(BOOK_KEY, books)
-    }
-}
-
 // create book
 function _createBook(name, price) {
     const book = {
@@ -498,10 +501,10 @@ function _createBook(name, price) {
     return book
 }
 
-function _createBooks2() {
+function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY) || null
     if (!books) {
-        books = BOOKS.map(book => ({...book}))
+        books = BOOKS.map(book => ({ ...book }))
         utilService.saveToStorage(BOOK_KEY, books)
     }
 
