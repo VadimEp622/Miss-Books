@@ -29,7 +29,7 @@ export function BookIndex() {
     }
 
     function onSelectBook(book) {
-        setSelectedCar(book)
+        setSelectedBook(book)
     }
 
     return (
@@ -37,7 +37,7 @@ export function BookIndex() {
         <section>
             {!selectedBook && <React.Fragment>
 
-                <BookList books={books} onSelectbook={onSelectBook} onRemoveBook={onRemoveBook} />
+                <BookList books={books} onSelectBook={onSelectBook} onRemoveBook={onRemoveBook} />
             </React.Fragment>}
 
             {selectedBook && <BookDetails onBack={() => setSelectedBook(null)} book={selectedBook} />}
