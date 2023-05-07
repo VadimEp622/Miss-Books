@@ -449,8 +449,8 @@ _createBooks2()
 
 export const bookService = {
     query,
-    getBook,
-    removeBook,
+    get,
+    remove,
 
 }
 
@@ -460,14 +460,16 @@ function query() {
 }
 
 // get book
-function getBook(bookId) {
+function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
 }
 
 // remove book
-function removeBook(bookId) {
+function remove(bookId) {
     return storageService.remove(BOOK_KEY, bookId)
 }
+
+
 
 
 //------PRIVATE FUNCTIONS------//

@@ -1,10 +1,10 @@
 import { BookPreview } from '../cmps/book-preview.jsx'
 
-export function BookList(props) {
+export function BookList({ books, onRemoveBook, onSelectBook }) {
 
     return (
         <ul className="book-list">
-            {props.books.map(book =>
+            {books.map(book =>
                 <li key={book.id}>
                     <BookPreview book={book} />
                     <section>

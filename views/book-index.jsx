@@ -1,5 +1,6 @@
 import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
+import { BookDetails } from '../views/book-details.jsx'
 
 const { useEffect, useState } = React
 
@@ -27,15 +28,21 @@ export function BookIndex() {
         })
     }
 
-    function onSelectBook(book){
+    function onSelectBook(book) {
         setSelectedCar(book)
     }
 
     return (
+
         <section>
-            {/* <CarFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
-            {/* <CarList onSelectCar={onSelectCar} cars={cars} onRemoveCar={onRemoveCar} /> */}
-            <BookList books={books} onSelectbook={onSelectBook} onRemoveBook={onRemoveBook} />
+            {!selectedBook && <React.Fragment>
+
+                <BookList books={books} onSelectbook={onSelectBook} onRemoveBook={onRemoveBook} />
+            </React.Fragment>}
+
+            {selectedBook && <BookDetails onBack={() => setSelectedBook(null)} book={selectedBook} />}
         </section>
+
+
     )
 }
