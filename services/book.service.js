@@ -452,11 +452,12 @@ export const bookService = {
     get,
     remove,
     getDefaultFilter,
+    newBook,
 
 }
 
 function query(filterBy = {}) {
-    
+
     return storageService.query(BOOK_KEY)
         .then(books => {
             if (filterBy.name) {
@@ -486,9 +487,16 @@ function remove(bookId) {
     return storageService.remove(BOOK_KEY, bookId)
 }
 
+// handle new book button
+function newBook(inputName, inputPrice) {
+    let newBook = {
+        id: utilService.makeId(),
+        name: inputName,
+        price: inputPrice,
+    }
 
-
-
+    return storageService.post(BOOK_KEY, newBook)
+}
 //------PRIVATE FUNCTIONS------//
 
 // create book

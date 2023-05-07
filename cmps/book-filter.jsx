@@ -10,7 +10,7 @@ export function BookFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-
+        
         const field = target.name
         const value = target.type === 'number' ? (+target.value || '') : target.value
         setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
