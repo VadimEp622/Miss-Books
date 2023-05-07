@@ -12,15 +12,15 @@ export function BookEdit() {
 
             <article>
                 <label>Enter price:</label>
-                <input type="text" ref={nameRef} />
+                <input type="text" ref={nameRef} disabled />
             </article>
 
             <article>
                 <label>Enter name:</label>
-                <input type="number" ref={priceRef} />
+                <input type="number" ref={priceRef} disabled />
             </article>
 
-            <button>Add book</button>
+            <button disabled>Add book</button>
         </section>
     )
 }
