@@ -1,7 +1,7 @@
 import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
 import { BookDetails } from '../views/book-details.jsx'
-import {BookFilter} from '../cmps/book-filter.jsx'
+import { BookFilter } from '../cmps/book-filter.jsx'
 
 const { useEffect, useState } = React
 
@@ -38,7 +38,11 @@ export function BookIndex() {
         setSelectedBook(book)
     }
 
-    // function getPageAmountDesc(amount){ }
+    // function getPageAmountDesc(amount) {
+    //     if (amount > 500) return `Serious Reading`
+    //     if (amount < 100) return `Light Reading`
+    //     else return ``
+    // }
 
     return (
         <section>

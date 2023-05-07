@@ -4,17 +4,29 @@
     align-items: flex-start;
 }
 
-.book-details .book-title{
+.book-details .expensive {
+    color: red;
+}
+
+.book-details .cheap {
+    color: green;
+}
+
+.book-details .book-title,
+.book-details .book-price {
     width: 100%;
 }
+
 .book-details h1 {
     color: var(--clr1);
     font-size: 2em;
-    
+
 }
+
 .book-details h5 {
     color: var(--clr2);
 }
+
 .book-details img {
     max-width: 200px;
     display: block;
