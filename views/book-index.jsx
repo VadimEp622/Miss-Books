@@ -27,8 +27,8 @@ export function BookIndex() {
         })
     }
 
-    function onSelectCar(car){
-        setSelectedCar(car)
+    function onSelectBook(book){
+        setSelectedCar(book)
     }
 
     return (
