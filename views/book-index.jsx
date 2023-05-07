@@ -1,7 +1,7 @@
 import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
 import { BookDetails } from '../views/book-details.jsx'
-import { BookFilter } from '../cmps/book-filter.jsx'
+import {  BookFilter  } from '../cmps/book-filter.jsx'
 import { BookEdit } from '../cmps/book-edit.jsx'
 import { func } from 'prop-types'
 
