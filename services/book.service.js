@@ -13,10 +13,9 @@ export const bookService = {
 }
 
 function query() {
-    storageService.query(BOOK_KEY)
+    return storageService.query(BOOK_KEY)
     .then((book) => book)
 }
-
 
 // get book
 function getBook(bookId) {

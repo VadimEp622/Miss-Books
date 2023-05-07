@@ -13,7 +13,7 @@ export function BookIndex() {
 
     function loadBooks() {
         bookService.query()
-            .then((books) => 
+            .then((books) =>
                 setBooks(books)
             )
     }
@@ -21,11 +21,14 @@ export function BookIndex() {
     return (
         <section className="book-list">
             <h1>Hello from book Index</h1>
-            {/* {books.map((book) => {
-                <ul>
-                    <li>{book.name}</li>
-                </ul>
-            })} */}
+            {books.map((book) => {
+                return (
+                    <ul>
+                        <li>{book.name}</li>
+                    </ul>
+                )
+            })}
+
         </section>
     )
 }
