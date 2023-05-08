@@ -1,12 +1,16 @@
 const { useState } = React
 
+const Router = ReactRouterDOM.HashRouter
+const { Routes, Route } = ReactRouterDOM
+
+import { AppHeader } from "./cmps/app-header.jsx"
 import { About } from "./views/about.jsx"
 import { BookIndex } from "./views/book-index.jsx"
 import { Home } from "./views/home.jsx"
 
 export function App() {
 
-    const [page, setPage] = useState('book index')
+    const [page, setPage] = useState('bookindex')
 
 
     function handlePageChange(page) {
@@ -14,20 +18,19 @@ export function App() {
     }
 
     return (
-        <section className="app main-layout">
-            <header className="app-header full main-layout">
-                <h1>Miss Books App</h1>
-                <nav className="app-nav">
-                    <a onClick={() => handlePageChange('home')} href="#">Home</a> |
-                    <a onClick={() => handlePageChange('book index')} href="#">Book Index</a> |
-                    <a onClick={() => handlePageChange('about')} href="#">About</a>
-                </nav>
-            </header>
-            <main>
-                {page === 'home' && <Home />}
-                {page === 'about' && <About />}
-                {page === 'book index' && <BookIndex />}
-            </main>
-        </section>
+        <Router>
+            <section className="app main-layout">
+
+                <AppHeader handlePageChange={handlePageChange} />
+
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/bookindex" element={<BookIndex />} />
+                    </Routes>
+                </main>
+            </section>
+        </Router>
     )
 }
