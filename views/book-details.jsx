@@ -1,16 +1,18 @@
+const { useEffect, useState } = React
+const { useParams, useNavigate } = ReactRouterDOM
+
 import { utilService } from '../services/util.service.js'
 import { bookService } from '../services/book.service.js'
 import { LongTxt } from '../cmps/long-txt.jsx'
 import { BookReview } from './book-review.jsx'
 
-const { useEffect, useState } = React
-const { useParams, useNavigate } = ReactRouterDOM
 
 export function BookDetails() {
 
     const [book, setBook] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         loadBook()
@@ -46,6 +48,10 @@ export function BookDetails() {
         if (price > 150) return `expensive`
         if (price < 20) return `cheap`
         return ``
+    }
+
+    function deleteReview(idx) {
+        setReviews(reviews.filter((review, index) => index !== idx));
     }
 
     if (!book) return <div>Loading...</div>
@@ -100,7 +106,16 @@ export function BookDetails() {
                         {book.listPrice.isOnSale ? `On Sale` : `Out Of Stock`}
                     </article>
                 </h5>
-                <BookReview bookId={params} />
+                <ul>
+                    {reviews.map((review, idx) => (
+                        <li key={idx}>
+                            {review.name} gave this book a rating of {review.rate} on {review.date}.
+                            <button onClick={() => deleteReview(idx)}>Delete</button>
+                        </li>
+                    ))}
+                </ul>
+                    
+                    <BookReview bookId={params.bookId} reviews={reviews} setReviews={setReviews} />
             </section>
             <button onClick={onBack}>Back</button>
         </section>

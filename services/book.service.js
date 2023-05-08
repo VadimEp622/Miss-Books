@@ -1,7 +1,7 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
-const gReviews = []
+
 
 
 const BOOKS = [
@@ -458,7 +458,7 @@ export const bookService = {
     getDefaultFilter,
     getEmptyBook,
     addReview,
-    loadReviews,
+    
 
 }
 
@@ -518,15 +518,23 @@ function getEmptyBook() {
 }
 
 function addReview(bookId, review) {
-    console.log('click')
-    gReviews.push(review)
-    utilService.saveToStorage(REVIEW_KEY, gReviews)
+    storageService.get(BOOK_KEY, bookId)
+        .then((book) => {
+            if (!book.reviews) {
+                book.reviews = []
+            }
+            book.reviews.push(review)
+            console.log('book after review push', book)
+            return storageService.put(BOOK_KEY, book)
+        })
+        .then(() => {
+            console.log('Review added successfully')
+        })
+        .catch((err) => {
+            console.log('Failed to add review', err)
+        })
 }
 
-function loadReviews() {
-    const loadReviews = utilService.loadFromStorage(REVIEW_KEY)
-    return loadReviews
-}
 
 function getDefaultFilter() {
     return { name: '', price: '' }

@@ -3,8 +3,8 @@ const { useState, useEffect, useRef } = React
 
 import { bookService } from '../services/book.service.js'
 
-export function BookReview({ bookId }) {
-    
+export function BookReview({ bookId, reviews, setReviews }) {
+
     console.log('id from review', bookId)
 
     const nameRef = useRef('')
@@ -13,28 +13,28 @@ export function BookReview({ bookId }) {
 
 
 
-    function onSubmitReview() {
-        const idBook = bookId.bookId
-        const name = nameRef.current.value
-        const rate = rateRef.current.value
-        const date = dateRef.current.value
+    async function onSubmitReview() {
+        if (!bookId) return;
+        const idBook = bookId;
+        const name = nameRef.current.value;
+        const rate = rateRef.current.value;
+        const date = dateRef.current.value;
         const review = {
             idBook,
             name,
             rate,
             date,
+        };
+        try {
+            await bookService.addReview(idBook, review);
+            setReviews([...reviews, review]);
+        } catch (err) {
+            console.log('Error adding review', err);
         }
-        bookService.addReview(idBook, review)
-
     }
-    renderReview()
-    function renderReview() {
-        const reviewsArray = bookService.loadReviews()
-        console.log(reviewsArray)
-        // const currReviews = reviewsArray.filter((reviews) => (params.bookId = reviews.idBook))
-        // console.log('curr reviews', currReviews)
+    
 
-    }
+
 
     return (
         <div>
