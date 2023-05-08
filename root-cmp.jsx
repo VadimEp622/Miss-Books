@@ -28,6 +28,8 @@ export function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/bookindex" element={<BookIndex />} />
+                        <Route path="/book/edit/:bookid" />
+                        <Route path="/book/edit" />
                     </Routes>
                 </main>
             </section>
