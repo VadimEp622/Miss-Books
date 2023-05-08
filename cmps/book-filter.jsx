@@ -2,15 +2,14 @@
 const { useState, useEffect } = React
 
 export function BookFilter({ filterBy, onSetFilter }) {
-    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
+    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        
         const field = target.name
         const value = target.type === 'number' ? (+target.value || '') : target.value
         setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
@@ -24,15 +23,15 @@ export function BookFilter({ filterBy, onSetFilter }) {
     const { name, price } = filterByToEdit
 
     return (
-        <section className="car-filter">
+        <section className="book-filter">
             <h2>Filter Our Books</h2>
 
             <form onSubmit={onSubmitFilter}>
-                <label htmlFor="tnamext">Name:</label>
-                <input value={name} onChange={handleChange} name="name" id="name" type="text" placeholder="By Vendor" />
+                <label htmlFor="name">Name:</label>
+                <input value={name} onChange={handleChange} name="name" id="name" type="text" placeholder="By Title" />
 
                 <label htmlFor="price">Price:</label>
-                <input value={price} onChange={handleChange} type="number" name="price" id="price" placeholder="By Min Speed" />
+                <input value={price} onChange={handleChange} type="number" name="price" id="price" placeholder="By Price" />
 
                 <button>Filter Books</button>
             </form>
