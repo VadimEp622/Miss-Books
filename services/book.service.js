@@ -507,7 +507,7 @@ function getEmptyBook() {
         "description": '',
         "pageCount": '',
         "categories": [],
-        "thumbnail": './assets/img/book-images/20.jpg',
+        "thumbnail": './assets/img/book-images/default.png',
         "language": 'en',
         "listPrice": {
             "amount": '',
