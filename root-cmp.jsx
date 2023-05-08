@@ -12,7 +12,7 @@ import { BookDetails } from "./views/book-details.jsx"
 
 export function App() {
 
-    const [page, setPage] = useState('bookindex')
+    const [page, setPage] = useState('book')
 
 
     function handlePageChange(page) {
@@ -30,7 +30,7 @@ export function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/book/:bookId" element={<BookDetails />} />
-                        <Route path="/bookIndex" element={<BookIndex />} />
+                        <Route path="/book" element={<BookIndex />} />
                         <Route path="/book/edit/:bookId" element={<BookEdit />} />
                         <Route path="/book/edit" element={<BookEdit />} />
                     </Routes>

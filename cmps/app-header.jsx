@@ -9,7 +9,7 @@ export function AppHeader({ onSetPage }) {
             <nav className="app-nav">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
-                <NavLink to="/bookIndex">Book Index</NavLink>
+                <NavLink to="/book">Book Index</NavLink>
                 <NavLink to="/book/edit">New Book</NavLink>
             </nav>
         </header>
