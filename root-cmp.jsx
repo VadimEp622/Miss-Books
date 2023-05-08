@@ -5,8 +5,9 @@ const { Routes, Route } = ReactRouterDOM
 
 import { AppHeader } from "./cmps/app-header.jsx"
 import { About } from "./views/about.jsx"
-import { BookIndex } from "./views/book-index.jsx"
 import { Home } from "./views/home.jsx"
+import { BookIndex } from "./views/book-index.jsx"
+import { BookEdit } from './views/book-edit.jsx'
 
 export function App() {
 
@@ -25,11 +26,11 @@ export function App() {
 
                 <main>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home />} /> 
                         <Route path="/about" element={<About />} />
                         <Route path="/bookIndex" element={<BookIndex />} />
-                        <Route path="/book/edit/:bookId" />
-                        <Route path="/book/edit" />
+                        <Route path="/bookIndex/edit/:bookId" element={<BookEdit />} />
+                        <Route path="/bookIndex/edit" element={<BookEdit />} />
                     </Routes>
                 </main>
             </section>

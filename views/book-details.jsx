@@ -1,5 +1,6 @@
-import { LongTxt } from '../cmps/long-txt.jsx'
 import { utilService } from '../services/util.service.js'
+
+import { LongTxt } from '../cmps/long-txt.jsx'
 
 export function BookDetails({ book, onBack }) {
 

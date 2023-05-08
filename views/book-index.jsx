@@ -1,8 +1,9 @@
-import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
+
+import { BookList } from '../cmps/book.list.jsx'
 import { BookDetails } from '../views/book-details.jsx'
 import { BookFilter } from '../cmps/book-filter.jsx'
-import { BookEdit } from './book-edit.jsx'
+
 
 
 const { useEffect, useState } = React
@@ -46,7 +47,6 @@ export function BookIndex() {
     return (
         <section className="book-index">
             {!selectedBook && <React.Fragment>
-                <BookEdit onCreateBook={onCreateBook} />
                 <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
                 <BookList books={books} onSelectBook={onSelectBook} onRemoveBook={onRemoveBook} />
             </React.Fragment>}

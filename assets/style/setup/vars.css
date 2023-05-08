@@ -1,4 +1,5 @@
 :root {
+  /* Colors */
   --clr1: rgb(96, 107, 91);
   --clr2: rgb(120, 99, 110);
 
@@ -11,4 +12,7 @@
   --gray2: rgb(155, 155, 155);
   --gray3: rgb(44, 44, 44);
 
-} 
+
+  /* Sizes */
+  --paddingGap: 15px;
+}

@@ -45,5 +45,5 @@
 }
 
 .book-product-details h5 article > * {
-    padding-inline: 15px;
+    padding-inline: var(--paddingGap);
 }
