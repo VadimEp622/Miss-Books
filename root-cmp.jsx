@@ -27,8 +27,8 @@ export function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
-                        <Route path="/bookindex" element={<BookIndex />} />
-                        <Route path="/book/edit/:bookid" />
+                        <Route path="/bookIndex" element={<BookIndex />} />
+                        <Route path="/book/edit/:bookId" />
                         <Route path="/book/edit" />
                     </Routes>
                 </main>
