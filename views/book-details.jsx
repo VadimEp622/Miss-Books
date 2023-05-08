@@ -10,18 +10,19 @@ export function BookDetails() {
     const [book, setBook] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
+    console.log('params', params)
 
     useEffect(() => {
         loadBook()
     }, [])
 
-    function loadBook(){
+    function loadBook() {
         bookService.get(params.bookId)
-        .then(setBook)
-        .catch(err => {
-            console.log('Had issued in book details', err)
-            navigate('/book')
-        })
+            .then(setBook)
+            .catch(err => {
+                console.log('Had issued in book details', err)
+                navigate('/book')
+            })
     }
 
     function onBack() {
