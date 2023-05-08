@@ -451,8 +451,9 @@ export const bookService = {
     query,
     get,
     remove,
+    save,
     getDefaultFilter,
-    newBook,
+    getEmptyBook,
 
 }
 
@@ -473,11 +474,6 @@ function query(filterBy = {}) {
         })
 }
 
-
-function getDefaultFilter() {
-    return { name: '', price: '' }
-}
-
 // get book
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
@@ -488,16 +484,24 @@ function remove(bookId) {
     return storageService.remove(BOOK_KEY, bookId)
 }
 
-// handle new book button
-function newBook(inputName, inputPrice) {
-    let newBook = {
-        id: utilService.makeId(),
-        name: inputName,
-        price: inputPrice,
+function save(book) {
+    if (book.id) {
+        return storageService.put(BOOK_KEY, book)
+    } else {
+        return storageService.post(BOOK_KEY, book)
     }
-
-    return storageService.post(BOOK_KEY, newBook)
 }
+
+function getEmptyBook(title = '', price = '') {
+    return { id: '', title, price }
+}
+
+function getDefaultFilter() {
+    return { name: '', price: '' }
+}
+
+
+
 //------PRIVATE FUNCTIONS------//
 
 // create book
