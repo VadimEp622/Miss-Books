@@ -60,7 +60,8 @@ export function BookEdit() {
 
             <article>
                 <label>Enter Price:</label>
-                <input type="number" value={bookToEdit.listPrice.amount} onChange={(ev) => setBookToEdit({...bookToEdit, listPrice: {...bookToEdit.listPrice, amount: ev.target.value}})} />
+                <input type="number" value={bookToEdit.listPrice.amount} name='amount' onChange={handleChange} />
+                {/* <input type="number" value={bookToEdit.listPrice.amount} onChange={(ev) => setBookToEdit({...bookToEdit, listPrice: {...bookToEdit.listPrice, amount: ev.target.value}})} /> */}
             </article>
 
             <button onClick={handleSave}>Save book</button>
