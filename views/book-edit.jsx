@@ -34,6 +34,13 @@ export function BookEdit() {
             })
     }
 
+    function handleChange({ target }) {
+        const field = target.name
+        const value = target.type === 'number' ? (+target.value || '') : target.value
+        setBookToEdit(prevBook => ({ ...prevBook, [field]: value }))
+    }
+
+
     function handleSave() {
         console.log('bookToEdit', bookToEdit)
         // add code to save the book
@@ -43,12 +50,12 @@ export function BookEdit() {
         <section className="book-edit">
             <article>
                 <label>Enter Title:</label>
-                <input type="text" value={bookToEdit.title} onChange={(ev) => setBookToEdit({...bookToEdit, title: ev.target.value})} />
+                <input type="text" value={bookToEdit.title} name='title' onChange={handleChange} />
             </article>
 
             <article>
                 <label>Enter Subtitle:</label>
-                <input type="text" value={bookToEdit.subtitle} onChange={(ev) => setBookToEdit({...bookToEdit, subtitle: ev.target.value})} />
+                <input type="text" value={bookToEdit.subtitle} name='subtitle' onChange={handleChange} />
             </article>
 
             <article>
