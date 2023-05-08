@@ -10,9 +10,15 @@ export function BookList({ books, onRemoveBook, onSelectBook }) {
                 <li key={book.id}>
                     <BookPreview book={book} />
                     <section className="flex">
-                        <button onClick={() => onRemoveBook(book.id)} >Remove Book</button>
-                        <button><Link to={`/book/${book.id}`}>Details</Link></button>
-                        <button><Link to={`/book/edit/${book.id}`}>Edit</Link></button>          
+                        <button onClick={() => onRemoveBook(book.id)} >Remove</button>
+                        <Link to={`/book/${book.id}`}>
+                            <button>Details</button>
+                        </Link>
+
+                        <Link to={`/book/edit/${book.id}`}>
+                            <button>Edit</button>
+                        </Link>
+
                     </section>
                 </li>
             )}

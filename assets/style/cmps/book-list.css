@@ -17,3 +17,7 @@
 .book-list li>*:last-child() {
     justify-self: flex-end;
 }
+
+section .flex{
+    align-items: center;
+}
