@@ -52,7 +52,6 @@ export function BookDetails({ book, onBack }) {
 
             <section className="book-description">
                 <label>Description:</label>
-                {/* <h4>{book.description}</h4> */}
                 <h4><LongTxt txt={book.description} /></h4>
             </section>
 
