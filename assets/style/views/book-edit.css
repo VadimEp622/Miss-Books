@@ -4,3 +4,7 @@
     gap: var(--paddingGap);
     padding-block: var(--paddingGap);
 }
+
+.book-edit input[name=description] {
+    width: 100%;
+}
