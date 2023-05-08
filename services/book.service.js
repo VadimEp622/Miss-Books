@@ -492,8 +492,24 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', price = '') {
-    return { id: '', title, price }
+function getEmptyBook() {
+    return {
+        "id": utilService.makeId(),
+        "title": '',
+        "subtitle": '',
+        "authors": [],
+        "publishedDate": null,
+        "description": '',
+        "pageCount": null,
+        "categories": [],
+        "thumbnail": './assets/img/book-images/20.jpg',
+        "language": 'en',
+        "listPrice": {
+            "amount": null,
+            "currencyCode": 'ILS',
+            "isOnSale": null
+        }
+    }
 }
 
 function getDefaultFilter() {

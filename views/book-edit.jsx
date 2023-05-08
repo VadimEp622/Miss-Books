@@ -1,6 +1,11 @@
+import { bookService } from "../services/book.service.js";
+
 const { useEffect, useState, useRef } = React
 
 export function BookEdit() {
+
+    const [bookToEdit, setBookToEdit] = useState(bookService.getEmptyBook())
+    console.log('bookToEdit', bookToEdit)
 
     const nameRef = useRef('');
     const priceRef = useRef(0);
@@ -11,16 +16,21 @@ export function BookEdit() {
         <section className="book-edit">
 
             <article>
-                <label>Enter price:</label>
-                <input type="text" ref={nameRef} disabled />
+                <label>Enter Title:</label>
+                <input type="text" ref={nameRef} />
             </article>
 
             <article>
-                <label>Enter name:</label>
-                <input type="number" ref={priceRef} disabled />
+                <label>Enter Subtitle:</label>
+                <input type="text" ref={nameRef} />
             </article>
 
-            <button disabled>Add book</button>
+            <article>
+                <label>Enter Price:</label>
+                <input type="number" ref={priceRef} />
+            </article>
+
+            <button>Add book</button>
         </section>
     )
 }
