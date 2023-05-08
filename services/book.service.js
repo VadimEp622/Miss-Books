@@ -523,7 +523,7 @@ function addReview(bookId, review) {
     utilService.saveToStorage(REVIEW_KEY, gReviews)
 }
 
-function loadReviews(){
+function loadReviews() {
     const loadReviews = utilService.loadFromStorage(REVIEW_KEY)
     return loadReviews
 }
