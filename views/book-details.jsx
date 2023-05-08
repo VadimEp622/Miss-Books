@@ -1,6 +1,7 @@
 import { utilService } from '../services/util.service.js'
 import { bookService } from '../services/book.service.js'
 import { LongTxt } from '../cmps/long-txt.jsx'
+import { BookReview } from './book-review.jsx'
 
 const { useEffect, useState } = React
 const { useParams, useNavigate } = ReactRouterDOM
@@ -100,6 +101,7 @@ export function BookDetails() {
                         {book.listPrice.isOnSale ? `On Sale` : `Out Of Stock`}
                     </article>
                 </h5>
+                <BookReview bookId={params} />
             </section>
             <button onClick={onBack}>Back</button>
         </section>

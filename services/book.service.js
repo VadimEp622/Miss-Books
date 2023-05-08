@@ -1,6 +1,9 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
+const gReviews = []
+
+
 const BOOKS = [
     {
         "id": "OXeMG8wNskc",
@@ -444,7 +447,7 @@ const BOOKS = [
     }]
 
 const BOOK_KEY = 'bookDB'
-
+const REVIEW_KEY = 'reviewDB'
 _createBooks()
 
 export const bookService = {
@@ -454,6 +457,8 @@ export const bookService = {
     save,
     getDefaultFilter,
     getEmptyBook,
+    addReview,
+    loadReviews,
 
 }
 
@@ -510,6 +515,17 @@ function getEmptyBook() {
             "isOnSale": null
         }
     }
+}
+
+function addReview(bookId, review) {
+    console.log('click')
+    gReviews.push(review)
+    utilService.saveToStorage(REVIEW_KEY, gReviews)
+}
+
+function loadReviews(){
+    const loadReviews = utilService.loadFromStorage(REVIEW_KEY)
+    return loadReviews
 }
 
 function getDefaultFilter() {
