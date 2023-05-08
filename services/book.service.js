@@ -500,6 +500,7 @@ function save(book) {
 function getEmptyBook() {
     return {
         "id": utilService.makeId(),
+        // "id": '',
         "title": '',
         "subtitle": '',
         "authors": [],
