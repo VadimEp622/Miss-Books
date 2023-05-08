@@ -3,7 +3,8 @@ export const utilService = {
     makeLorem,
     getRandomIntInclusive,
     loadFromStorage,
-    saveToStorage
+    saveToStorage,
+    getCurrencySymbol
 }
 
 function makeId(length = 6) {

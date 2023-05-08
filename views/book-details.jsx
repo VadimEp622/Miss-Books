@@ -1,5 +1,5 @@
 import { LongTxt } from '../cmps/long-txt.jsx'
-
+import { utilService } from '../services/util.service.js'
 
 export function BookDetails({ book, onBack }) {
 
@@ -30,7 +30,7 @@ export function BookDetails({ book, onBack }) {
             <section className="book-price">
                 <label>Price:</label>
                 <h2 className={`${getClassColorByPrice(book.listPrice.amount)}`}>
-                    {book.listPrice.amount}{`\xa0`}{book.listPrice.currencyCode}
+                    {book.listPrice.amount}{utilService.getCurrencySymbol(book.listPrice.currencyCode)}
                 </h2>
             </section>
 
