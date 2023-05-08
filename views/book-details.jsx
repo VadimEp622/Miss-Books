@@ -25,7 +25,7 @@ export function BookDetails() {
     }
 
     function onBack() {
-        navigate('/bookIndex')
+        navigate('/book')
     }
 
     function getPageAmountDesc(amount) {
