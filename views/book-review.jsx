@@ -24,16 +24,15 @@ export function BookReview({ bookId }) {
             rate,
             date,
         }
-        console.log(review)
         bookService.addReview(idBook, review)
 
     }
-
+    renderReview()
     function renderReview() {
         const reviewsArray = bookService.loadReviews()
         console.log(reviewsArray)
-        const currReviews = reviewsArray.filter((reviews) => (params.bookId = reviews.idBook))
-        console.log('curr reviews', currReviews)
+        // const currReviews = reviewsArray.filter((reviews) => (params.bookId = reviews.idBook))
+        // console.log('curr reviews', currReviews)
 
     }
 
