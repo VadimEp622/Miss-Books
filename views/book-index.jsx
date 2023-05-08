@@ -25,7 +25,7 @@ export function BookIndex() {
         bookService.remove(bookId).then(() => {
             const updatedBooks = books.filter(book => book.id !== bookId)
             setBooks(updatedBooks)
-            showSuccessMsg(`Book (${carId}) removed!`)
+            showSuccessMsg(`Book (${bookId}) removed!`)
         })
     }
 
