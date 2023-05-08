@@ -4,17 +4,33 @@
     align-items: flex-start;
 }
 
+.book-details>*:not(:first-child) {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.book-details img {
+    max-width: 200px;
+    display: block;
+    margin: auto;
+}
+
+.book-price {
+    margin-inline: auto;
+}
+
+.book-title {
+    width: 100%;
+    flex-direction: column;
+}
+
 .book-details .expensive {
     color: red;
 }
 
 .book-details .cheap {
     color: green;
-}
-
-.book-details .book-title,
-.book-details .book-price {
-    width: 100%;
 }
 
 .book-details h1 {
@@ -25,10 +41,9 @@
 
 .book-details h5 {
     color: var(--clr2);
+    font-size: 1.2em;
 }
 
-.book-details img {
-    max-width: 200px;
-    display: block;
-    margin: auto;
+.book-product-details h5 article > * {
+    padding-inline: 15px;
 }

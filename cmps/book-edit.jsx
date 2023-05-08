@@ -8,15 +8,19 @@ export function BookEdit() {
 
 
     return (
-        <div>
+        <section className="book-edit">
 
-            <label >Enter price</label>
-            <input type="text" ref={nameRef} />
+            <article>
+                <label>Enter price:</label>
+                <input type="text" ref={nameRef} disabled />
+            </article>
 
-            <label >Enter name</label>
-            <input type="number" ref={priceRef} />
+            <article>
+                <label>Enter name:</label>
+                <input type="number" ref={priceRef} disabled />
+            </article>
 
-            <button >Add book</button>
-        </div>
+            <button disabled>Add book</button>
+        </section>
     )
 }

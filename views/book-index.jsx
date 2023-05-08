@@ -1,9 +1,9 @@
 import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
 import { BookDetails } from '../views/book-details.jsx'
-import {  BookFilter  } from '../cmps/book-filter.jsx'
+import { BookFilter } from '../cmps/book-filter.jsx'
 import { BookEdit } from '../cmps/book-edit.jsx'
-import { func } from 'prop-types'
+// import { func } from 'prop-types'
 
 const { useEffect, useState } = React
 
@@ -15,14 +15,11 @@ export function BookIndex() {
 
     useEffect(() => {
         loadBooks()
-
     }, [filterBy])
 
     function loadBooks() {
         bookService.query(filterBy)
-            .then((books) =>
-                setBooks(books)
-            )
+            .then(books => setBooks(books))
     }
 
     function onRemoveBook(bookId) {
@@ -42,13 +39,12 @@ export function BookIndex() {
 
     //create new book
     function onCreateBook(name, value) {
-       
+
     }
 
-    // function getPageAmountDesc(amount){ }
 
     return (
-        <section>
+        <section className="book-index">
             {!selectedBook && <React.Fragment>
                 <BookEdit onCreateBook={onCreateBook} />
                 <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
