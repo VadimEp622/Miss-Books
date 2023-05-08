@@ -3,9 +3,7 @@ const { Link} = ReactRouterDOM
 import { BookFilter } from '../cmps/book-filter.jsx'
 import { BookList } from '../cmps/book.list.jsx'
 import { bookService } from '../services/book.service.js'
-import { BookDetails } from '../views/book-details.jsx'
-import { BookFilter } from '../cmps/book-filter.jsx'
-import { BookEdit } from './book-edit.jsx'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 
 
@@ -44,13 +42,10 @@ export function BookIndex() {
 
     return (
         <section className="book-index">
-            {!selectedBook && <React.Fragment>
-                <BookEdit onCreateBook={onCreateBook} />
-                <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-                <BookList books={books} onSelectBook={onSelectBook} onRemoveBook={onRemoveBook} />
-            </React.Fragment>}
-
-            {selectedBook && <BookDetails onBack={() => setSelectedBook(null)} book={selectedBook} />}
+            <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            <Link to="/book/edit">Add book</Link>
+            <BookList books={books} onRemoveBook={onRemoveBook} />
+            {/* <button onClick={() => onSelectBook(book)} >Select Book</button> */}
         </section>
     )
 }
