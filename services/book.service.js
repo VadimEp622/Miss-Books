@@ -504,16 +504,16 @@ function getEmptyBook() {
         "title": '',
         "subtitle": '',
         "authors": [],
-        "publishedDate": null,
+        "publishedDate": '',
         "description": '',
-        "pageCount": null,
+        "pageCount": '',
         "categories": [],
         "thumbnail": './assets/img/book-images/20.jpg',
         "language": 'en',
         "listPrice": {
-            "amount": null,
+            "amount": '',
             "currencyCode": 'ILS',
-            "isOnSale": null
+            "isOnSale": ''
         }
     }
 }
