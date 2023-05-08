@@ -1,8 +1,32 @@
 import { utilService } from '../services/util.service.js'
-
+import { bookService } from '../services/book.service.js'
 import { LongTxt } from '../cmps/long-txt.jsx'
 
-export function BookDetails({ book, onBack }) {
+const { useEffect, useState } = React
+const { useParams, useNavigate } = ReactRouterDOM
+
+export function BookDetails() {
+
+    const [book, setBook] = useState(null)
+    const params = useParams()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        loadBook()
+    }, [])
+
+    function loadBook(){
+        bookService.get(params.bookId)
+        .then(setBook)
+        .catch(err => {
+            console.log('Had issued in book details', err)
+            navigate('/book')
+        })
+    }
+
+    function onBack() {
+        navigate('/bookIndex')
+    }
 
     function getPageAmountDesc(amount) {
         if (amount > 500) return `(Serious Reading)`
@@ -22,6 +46,8 @@ export function BookDetails({ book, onBack }) {
         if (price < 20) return `cheap`
         return ``
     }
+
+    if (!book) return <div>Loading...</div>
 
     return (
         <section className="book-details">
@@ -74,7 +100,6 @@ export function BookDetails({ book, onBack }) {
                     </article>
                 </h5>
             </section>
-
             <button onClick={onBack}>Back</button>
         </section>
     )
