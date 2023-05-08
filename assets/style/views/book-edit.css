@@ -1,0 +1,6 @@
+.book-edit {
+    display: flex;
+    flex-direction: column;
+    gap: var(--paddingGap);
+    padding-block: var(--paddingGap);
+}

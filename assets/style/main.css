@@ -10,6 +10,8 @@
 
 /* Views */
 @import "views/home.css";
+@import "views/book-details.css";
+@import "views/book-edit.css";
 
 /* Components */
 @import "cmps/app-header.css";
@@ -17,5 +19,3 @@
 @import "cmps/book-filter.css";
 @import "cmps/book-list.css";
 @import "cmps/book-preview.css";
-@import "cmps/book-details.css";
-@import "cmps/book-edit.css";

@@ -6,8 +6,8 @@
 
 .app-nav {
     display: flex;
-    gap: 15px;
-    padding-block: 15px;
+    gap: var(--paddingGap);
+    padding-block: 1var(--paddingGap);
     font-size: 1.3em;
 }
 
