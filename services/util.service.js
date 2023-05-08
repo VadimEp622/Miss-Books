@@ -41,3 +41,14 @@ function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+function getCurrencySymbol(currencyCode) {
+    switch (currencyCode) {
+      case 'EUR':
+        return '€'
+      case 'ILS':
+        return '₪'
+      case 'USD':
+        return '$'
+    }
+  }
