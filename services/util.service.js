@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     loadFromStorage,
     saveToStorage,
-    getCurrencySymbol
+    getCurrencySymbol,
+    animateCSS
 }
 
 function makeId(length = 6) {
@@ -45,11 +46,26 @@ function loadFromStorage(key) {
 
 function getCurrencySymbol(currencyCode) {
     switch (currencyCode) {
-      case 'EUR':
-        return '€'
-      case 'ILS':
-        return '₪'
-      case 'USD':
-        return '$'
+        case 'EUR':
+            return '€'
+        case 'ILS':
+            return '₪'
+        case 'USD':
+            return '$'
     }
-  }
+}
+
+function animateCSS(el, animation) {
+    const prefix = 'animate__'
+    return new Promise((resolve, reject) => {
+        const animationName = `${prefix}${animation}`
+        el.classList.add(`${prefix}animated`, animationName)
+        function handleAnimationEnd(event) {
+            event.stopPropagation()
+            el.classList.remove(`${prefix}animated`, animationName)
+            resolve('Animation ended')
+        }
+
+        el.addEventListener('animationend', handleAnimationEnd, { once: true })
+    })
+}
