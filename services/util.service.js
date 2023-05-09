@@ -5,7 +5,8 @@ export const utilService = {
     loadFromStorage,
     saveToStorage,
     getCurrencySymbol,
-    animateCSS
+    animateCSS,
+    debounce,
 }
 
 function makeId(length = 6) {
@@ -69,3 +70,19 @@ function animateCSS(el, animation) {
         el.addEventListener('animationend', handleAnimationEnd, { once: true })
     })
 }
+
+
+function debounce(func, wait) {
+    let timeout
+  
+    return function (...args) {
+      const later = () => {
+        clearTimeout(timeout)
+        func(...args)
+      }
+  
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
+    }
+  }
+  

@@ -3,21 +3,24 @@ const { useState, useEffect, useRef } = React
 import { bookService } from "../services/book.service.js"
 import { utilService } from "../services/util.service.js"
 import { storageService } from "../services/async-storage.service.js"
+import { BookAddFilter } from "../cmps/book-add-filter.jsx"
 
 export function BookAdd() {
-
     const [googleBooks, setGoogleBooks] = useState(null)
-    const [bookToEdit, setBookToEdit] = useState({})
-    const [filterByTitle, setFilterByTitle] = useState({ title: '' })
+    const [filterBy, setFilterBy] = useState({ title: '' })
+
 
     useEffect(() => {
         handleBookSearch()
 
-    }, [])
+    // }, [])
+    }, [filterBy])
 
-    useEffect(() => {
+    function onSetFilter(filterBy) {
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
+    }
 
-    }, [bookToEdit]);
+
 
     function handleBookSearch() {
         bookService.getGoogleBooks()
@@ -51,13 +54,12 @@ export function BookAdd() {
 
     }
 
+
     console.log('googlebooks', googleBooks)
     return (
         <section>
             <h1>Add new book from google library </h1>
-            {/* maxLength=1 temporary protection until debounce implemented */}
-            <input type="search" maxLength={1} />
-
+            <BookAddFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             {googleBooks ? (
                 <ul>
                     {googleBooks.map((book) => (
