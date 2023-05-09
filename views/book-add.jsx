@@ -23,7 +23,7 @@ export function BookAdd() {
 
 
     function handleBookSearch() {
-        bookService.getGoogleBooks()
+        bookService.getGoogleBooks(filterBy.title)
             .then((res) => {
                 setGoogleBooks(res.items)
             })
