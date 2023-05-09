@@ -41,14 +41,13 @@ export function BookDetails() {
 
         bookService.get(bookId)
             .then((book) => {
+                console.log('renderReviews', book)
                 if (book.reviews) {
                     const reviewsFromBook = book.reviews
                     setRenderReviews(reviewsFromBook)
                     setIsReviews(true)
-
-                } else {
-                    return
                 }
+                else setIsReviews(false)
             })
             .catch(err => {
                 console.log(err)
