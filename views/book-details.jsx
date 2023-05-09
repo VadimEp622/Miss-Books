@@ -164,8 +164,8 @@ export function BookDetails() {
             <section className='section-reviews'>
                 {isReviews === true && renderTheReviews.map((review, idx) => {
                     return (
-                        <ul>
-                            <li key={idx}>
+                        <ul key={idx}>
+                            <li >
                                 {review.name} gave this book a rating of {review.rate} on {review.date}
 
                             </li>
