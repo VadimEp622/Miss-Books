@@ -54,7 +54,8 @@ export function BookAdd() {
     return (
         <section>
             <h1>Add new book from google library </h1>
-            <input type="search" />
+            {/* maxLength=1 temporary protection until debounce implemented */}
+            <input type="search" maxLength={1} />
 
             {googleBooks ? (
                 <ul>
