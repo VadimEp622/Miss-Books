@@ -12,9 +12,36 @@
     justify-content: space-between;
     align-items: center;
     /* background-color: var(--clr1bg); */
-    background-color: #7394b6;
-    color: whitesmoke;
+    background-color: #5b87b2;
+    color: white;
 }
+
+.btnLook {
+    background-color: #2a3d50;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    transform: translateY(0);
+  }
+  
+  .btnLook:hover {
+    background-color: #0c1117;
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .book-list .flex button {
+    background-color: #2a3d50;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    transform: translateY(0);
+  }
+  
+  .book-list .flex button:hover {
+    background-color: #0c1117;
+    color: white;
+    transform: translateY(-2px);
+  }
+  
 
 
 .book-list li>*:last-child() {
@@ -24,4 +51,3 @@
 section .flex {
     align-items: center;
 }
-
