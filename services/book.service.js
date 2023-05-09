@@ -455,7 +455,7 @@ export const bookService = {
     getDefaultFilter,
     getEmptyBook,
     addReview,
-    
+    getNextBookId,
 
 }
 
@@ -512,6 +512,15 @@ function getEmptyBook() {
             "isOnSale": ''
         }
     }
+}
+
+function getNextBookId(bookId) {
+    return storageService.query(BOOK_KEY)
+        .then((books) => {
+            let bookIdx = books.findIndex(book => book.id === bookId)
+            if (bookIdx === books.length - 1) bookIdx = -1
+            return books[bookIdx + 1].id
+        })
 }
 
 function addReview(bookId, review) {

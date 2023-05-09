@@ -1,17 +1,18 @@
 const { useEffect, useState } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const { useParams, useNavigate, Link } = ReactRouterDOM
 
 import { utilService } from '../services/util.service.js'
 import { bookService } from '../services/book.service.js'
 import { LongTxt } from '../cmps/long-txt.jsx'
 import { BookReview } from './book-review.jsx'
-import { showErrorMsg } from '../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 
 export function BookDetails() {
 
     const [book, setBook] = useState(null)
-    const params = useParams()
+    const [nextBookId, setNextBookId] = useState(null)
+    const { bookId } = useParams()
     const navigate = useNavigate()
     const [reviews, setReviews] = useState([]);
     const [renderTheReviews, setRenderReviews] = useState([])
@@ -19,12 +20,13 @@ export function BookDetails() {
 
     useEffect(() => {
         loadBook()
+        loadNextBookId()
         renderReviews()
-    }, [isReviews])
+    }, [bookId, isReviews])
 
 
     function loadBook() {
-        bookService.get(params.bookId)
+        bookService.get(bookId)
             .then(setBook)
             .catch(err => {
                 console.log('Had issues in book details', err)
@@ -34,7 +36,7 @@ export function BookDetails() {
     }
 
     function renderReviews() {
-        const bookId = params.bookId
+        // const bookId = bookId
         console.log('from renderReviews', bookId)
 
         bookService.get(bookId)
@@ -43,11 +45,15 @@ export function BookDetails() {
                     const reviewsFromBook = book.reviews
                     setRenderReviews(reviewsFromBook)
                     setIsReviews(true)
+
                 } else {
                     return
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                showErrorMsg('Failed To Render Reviews')
+            })
     }
 
     function onBack() {
@@ -78,20 +84,28 @@ export function BookDetails() {
         const loadReviews = utilService.loadFromStorage('bookDB')
         console.log(loadReviews)
         const loadBook = loadReviews.find((book) => {
-            console.log(params.bookId)
+            console.log(bookId)
             console.log(book.id)
 
-            return params.bookId === book.id
+            return bookId === book.id
         })
         loadBook.reviews.splice(idx, 1)
         bookService.save(loadBook)
 
     }
 
-    if (!book) return <div>Loading...</div>
+    function loadNextBookId() {
+        // console.log('bookId', bookId)
+        bookService.getNextBookId(bookId)
+            .then(setNextBookId)
+    }
 
+
+    if (!book) return <div>Loading...</div>
     return (
         <section className="book-details">
+
+            <Link className="btnLook" to={`/book/${nextBookId}`}>Next Book</Link>
 
             <img src={`${book.thumbnail}`}></img>
 
@@ -139,15 +153,12 @@ export function BookDetails() {
                         <label>On Sale:</label>
                         {book.listPrice.isOnSale ? `On Sale` : `Out Of Stock`}
                     </article>
-
-
-
                 </h5>
                 <button onClick={onBack}>Back</button>
             </section>
 
             <section>
-                <BookReview bookId={params.bookId} reviews={reviews} setReviews={setReviews} />
+                <BookReview bookId={bookId} reviews={reviews} setReviews={setReviews} />
             </section>
 
             <section className='reviews-submit'>
