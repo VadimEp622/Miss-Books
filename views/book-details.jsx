@@ -13,10 +13,14 @@ export function BookDetails() {
     const params = useParams()
     const navigate = useNavigate()
     const [reviews, setReviews] = useState([]);
+    const [renderTheReviews, setRenderReviews] = useState([])
+    const [isReviews, setIsReviews] = useState(false)
 
     useEffect(() => {
         loadBook()
-    }, [])
+        renderReviews()
+    }, [isReviews])
+
 
     function loadBook() {
         bookService.get(params.bookId)
@@ -25,6 +29,23 @@ export function BookDetails() {
                 console.log('Had issued in book details', err)
                 navigate('/book')
             })
+    }
+
+    function renderReviews() {
+        const bookId = params.bookId
+        console.log('from renderReviews', bookId)
+
+        bookService.get(bookId)
+            .then((book) => {
+                if (book.reviews) {
+                    const reviewsFromBook = book.reviews
+                    setRenderReviews(reviewsFromBook)
+                    setIsReviews(true)
+                } else {
+                    return
+                }
+            })
+            .catch(err => console.log(err))
     }
 
     function onBack() {
@@ -52,6 +73,17 @@ export function BookDetails() {
 
     function deleteReview(idx) {
         setReviews(reviews.filter((review, index) => index !== idx));
+        const loadReviews = utilService.loadFromStorage('bookDB')
+        console.log(loadReviews )
+        const loadBook = loadReviews.find((book) => {
+            console.log(params.bookId)
+            console.log(book.id)
+            
+            return params.bookId === book.id
+        })
+        loadBook.reviews.splice(idx, 1)
+        bookService.save(loadBook)
+
     }
 
     if (!book) return <div>Loading...</div>
@@ -105,7 +137,11 @@ export function BookDetails() {
                         <label>On Sale:</label>
                         {book.listPrice.isOnSale ? `On Sale` : `Out Of Stock`}
                     </article>
+
+
+
                 </h5>
+
                 <ul>
                     {reviews.map((review, idx) => (
                         <li key={idx}>
@@ -114,9 +150,19 @@ export function BookDetails() {
                         </li>
                     ))}
                 </ul>
-                    
-                    <BookReview bookId={params.bookId} reviews={reviews} setReviews={setReviews} />
+
+                <BookReview bookId={params.bookId} reviews={reviews} setReviews={setReviews} />
+
+                {isReviews === true && renderTheReviews.map((review, idx) => {
+                    return (
+                        <li key={idx}>
+                            {review.name} gave this book a rating of {review.rate} on {review.date}
+                            
+                        </li>
+                    )
+                })}
             </section>
+
             <button onClick={onBack}>Back</button>
         </section>
     )
