@@ -2,12 +2,13 @@ const { useState, useEffect, useRef } = React
 
 import { bookService } from "../services/book.service.js"
 import { utilService } from "../services/util.service.js"
-import {storageService} from "../services/async-storage.service.js"
+import { storageService } from "../services/async-storage.service.js"
 
 export function BookAdd() {
 
     const [googleBooks, setGoogleBooks] = useState(null)
     const [bookToEdit, setBookToEdit] = useState({})
+    const [filterByTitle, setFilterByTitle] = useState({ title: '' })
 
     useEffect(() => {
         handleBookSearch()
@@ -15,7 +16,7 @@ export function BookAdd() {
     }, [])
 
     useEffect(() => {
-        
+
     }, [bookToEdit]);
 
     function handleBookSearch() {
