@@ -444,6 +444,7 @@ const BOOKS = [
     }]
 
 const BOOK_KEY = 'bookDB'
+const axios = require('axios/dist/browser/axios.cjs')
 
 _createBooks()
 
@@ -456,6 +457,7 @@ export const bookService = {
     getEmptyBook,
     addReview,
     getNextBookId,
+    getGoogleBooks,
 
 }
 
@@ -543,6 +545,15 @@ function addReview(bookId, review) {
 
 function getDefaultFilter() {
     return { name: '', price: '' }
+}
+
+// handle adding new books from google api 
+function getGoogleBooks() {
+    return axios.get('https://www.googleapis.com/books/v1/volumes?printType=books&q=effective%20javascript')
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => console.log(err))
 }
 
 

@@ -11,6 +11,7 @@ export function AppHeader({ onSetPage }) {
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/book">Our Books</NavLink>
                 <NavLink to="/book/edit">New Book</NavLink>
+                <NavLink to="/google/newbook">Add google book</NavLink>
             </nav>
         </header>
     )

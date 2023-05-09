@@ -12,7 +12,7 @@ import { Home } from "./views/home.jsx"
 import { BookIndex } from "./views/book-index.jsx"
 import { BookEdit } from './views/book-edit.jsx'
 import { BookDetails } from "./views/book-details.jsx"
-
+import { BookAdd } from "./views/book-add.jsx"
 
 export function App() {
 
@@ -40,6 +40,7 @@ export function App() {
                         <Route path="/book" element={<BookIndex />} />
                         <Route path="/book/edit/:bookId" element={<BookEdit />} />
                         <Route path="/book/edit" element={<BookEdit />} />
+                        <Route path="/google/newbook" element={<BookAdd />} />
                     </Routes>
                 </main>
                 <UserMsg />
