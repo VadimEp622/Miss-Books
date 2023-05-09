@@ -8,3 +8,8 @@
 .book-edit input[name=description] {
     width: 100%;
 }
+
+.book-edit button {
+    width: fit-content;
+    align-self: center;
+}
