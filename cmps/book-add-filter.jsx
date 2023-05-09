@@ -1,5 +1,3 @@
-import { utilService } from "../services/util.service.js"
-
 const { useState, useEffect } = React
 
 export function BookAddFilter({ filterBy, onSetFilter }) {
@@ -8,7 +6,6 @@ export function BookAddFilter({ filterBy, onSetFilter }) {
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
-        // }, [])
     }, [filterByToEdit])
 
     function handleChange({ target }) {
@@ -18,16 +15,13 @@ export function BookAddFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
     }
 
-    // const debouncedHandleChange = utilService.debounce(handleChange, 2000)
-
     const { title } = filterByToEdit
 
-    /* maxLength=1 temporary protection until debounce implemented */
     return (
         <input
             type="search" name="title"
             value={title} onChange={handleChange}
-            placeholder="By Book Title" maxLength={92} />
+            placeholder="By Book Title" />
 
     )
 }

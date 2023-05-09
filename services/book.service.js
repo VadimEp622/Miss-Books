@@ -567,7 +567,8 @@ function getDefaultFilter() {
 
 // handle adding new books from google api 
 function getGoogleBooks(searchParams) {
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchParams ? searchParams : 'effective'}`)
+    console.log('searchParams', searchParams)
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchParams}`)
         .then((res) => {
             return res.data
         })

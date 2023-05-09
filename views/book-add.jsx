@@ -7,20 +7,16 @@ import { BookAddFilter } from "../cmps/book-add-filter.jsx"
 
 export function BookAdd() {
     const [googleBooks, setGoogleBooks] = useState(null)
-    const [filterBy, setFilterBy] = useState({ title: '' })
-
+    const [filterBy, setFilterBy] = useState({ title: 'effective' })
+    const debouncedFilter = useRef(utilService.debounce(handleBookSearch, 2000));
 
     useEffect(() => {
-        handleBookSearch()
-
-    // }, [])
+        debouncedFilter.current()
     }, [filterBy])
 
     function onSetFilter(filterBy) {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
     }
-
-
 
     function handleBookSearch() {
         bookService.getGoogleBooks(filterBy.title)
@@ -51,7 +47,6 @@ export function BookAdd() {
         storageService.post('bookDB', newBook)
             .then(() => console.log('New google book added'))
             .catch((err) => console.log(err))
-
     }
 
 
