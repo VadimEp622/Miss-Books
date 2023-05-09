@@ -36,18 +36,15 @@ export function BookDetails() {
     }
 
     function renderReviews() {
-        // const bookId = bookId
         console.log('from renderReviews', bookId)
-
         bookService.get(bookId)
             .then((book) => {
                 console.log('renderReviews', book)
                 if (book.reviews) {
                     const reviewsFromBook = book.reviews
-                    setRenderReviews(reviewsFromBook)
                     setIsReviews(true)
+                    setRenderReviews(reviewsFromBook)
                 }
-                else setIsReviews(false)
             })
             .catch(err => {
                 console.log(err)
@@ -96,7 +93,10 @@ export function BookDetails() {
     function loadNextBookId() {
         // console.log('bookId', bookId)
         bookService.getNextBookId(bookId)
-            .then(setNextBookId)
+            .then(book => {
+                setNextBookId(book)
+                setIsReviews(false)
+            })
     }
 
 
