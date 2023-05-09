@@ -2,6 +2,7 @@ const { useState, useEffect, useRef } = React
 
 
 import { bookService } from '../services/book.service.js'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 export function BookReview({ bookId, reviews, setReviews }) {
 
@@ -12,26 +13,52 @@ export function BookReview({ bookId, reviews, setReviews }) {
     const dateRef = useRef(0)
 
 
-
-    async function onSubmitReview() {
-        if (!bookId) return;
-        const idBook = bookId;
-        const name = nameRef.current.value;
-        const rate = rateRef.current.value;
-        const date = dateRef.current.value;
+    //THIS IS FIXED:
+    function onSubmitReview() {
+        if (!bookId) return
+        const idBook = bookId
+        const name = nameRef.current.value
+        const rate = rateRef.current.value
+        const date = dateRef.current.value
         const review = {
             idBook,
             name,
             rate,
             date,
-        };
-        try {
-            await bookService.addReview(idBook, review);
-            setReviews([...reviews, review]);
-        } catch (err) {
-            console.log('Error adding review', err);
         }
+        bookService.addReview(idBook, review)
+            .then(book => {
+                console.log('Review added successfully')
+                showSuccessMsg('Review added successfully')
+                console.log('book', book)
+                setReviews([...reviews, review])
+            })
+            .catch(err => {
+                console.log('err', err)
+                showErrorMsg('Failed to add review')
+            })
     }
+
+    //THIS IS NOT GOOD:
+    // async function onSubmitReview() {
+    //     if (!bookId) return
+    //     const idBook = bookId
+    //     const name = nameRef.current.value
+    //     const rate = rateRef.current.value
+    //     const date = dateRef.current.value
+    //     const review = {
+    //         idBook,
+    //         name,
+    //         rate,
+    //         date,
+    //     }
+    //     try {
+    //         await bookService.addReview(idBook, review)
+    //         setReviews([...reviews, review])
+    //     } catch (err) {
+    //         console.log('Error adding review', err)
+    //     }
+    // }
 
     return (
         <div className='div-reviews-inputs'>

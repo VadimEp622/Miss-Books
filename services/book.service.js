@@ -525,22 +525,40 @@ function getNextBookId(bookId) {
         })
 }
 
+//THIS IS FIXED:
 function addReview(bookId, review) {
-    storageService.get(BOOK_KEY, bookId)
+    return storageService.get(BOOK_KEY, bookId)
         .then((book) => {
             if (!book.reviews) {
                 book.reviews = []
             }
             book.reviews.push(review)
+            console.log('Caught Book')
+            console.log('book', book)
             return storageService.put(BOOK_KEY, book)
         })
-        .then(() => {
-            console.log('Review added successfully')
-        })
-        .catch((err) => {
-            console.log('Failed to add review', err)
+        .catch(err => {
+            console.log('failed to get book', err)
         })
 }
+
+//THIS IS NOT GOOD:
+// function addReview(bookId, review) {
+//     return storageService.get(BOOK_KEY, bookId)
+//         .then((book) => {
+//             if (!book.reviews) {
+//                 book.reviews = []
+//             }
+//             book.reviews.push(review)
+//             return storageService.put(BOOK_KEY, book)
+//         })
+//         .then(() => {
+//             console.log('Review added successfully')
+//         })
+//         .catch((err) => {
+//             console.log('Failed to add review', err)
+//         })
+// }
 
 
 function getDefaultFilter() {
