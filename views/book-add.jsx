@@ -29,17 +29,17 @@ export function BookAdd() {
     function onAddBook(book) {
         console.log('click', book)
         const newBook = {
-            authors: book.volumeInfo.authors,
-            categories: book.volumeInfo.categories,
-            description: book.volumeInfo.description,
-            id: book.id,
+            authors: book.volumeInfo.authors || ["no info"],
+            categories: book.volumeInfo.categories || ['no info'],
+            description: book.volumeInfo.description || "no info",
+            id: book.id || "noinfo",
             language: "en",
             listPrice: { amount: utilService.getRandomIntInclusive(10, 300), currencyCode: 'ILS', isOnSale: 'true' },
-            pageCount: book.volumeInfo.pageCount,
-            publishedDate: book.volumeInfo.publishedDate,
-            subtitle: book.volumeInfo.description,
-            thumbnail: book.volumeInfo.imageLinks.thumbnail,
-            title: book.volumeInfo.title
+            pageCount: book.volumeInfo.pageCount || "no info",
+            publishedDate: book.volumeInfo.publishedDate || "no info",
+            subtitle: book.volumeInfo.description || "no subtitle",
+            thumbnail: book.volumeInfo.imageLinks.thumbnail || './assets/img/book-images/default.png',
+            title: book.volumeInfo.title || ""
         }
 
         console.log('New Book', newBook)
