@@ -5,7 +5,7 @@ import { bookService } from '../services/book.service.js'
 
 export function BookReview({ bookId, reviews, setReviews }) {
 
-    console.log('id from review', bookId)
+    // console.log('id from review', bookId)
 
     const nameRef = useRef('')
     const rateRef = useRef(0)
@@ -32,9 +32,6 @@ export function BookReview({ bookId, reviews, setReviews }) {
             console.log('Error adding review', err);
         }
     }
-    
-
-
 
     return (
         <div>

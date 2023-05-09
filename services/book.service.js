@@ -444,7 +444,7 @@ const BOOKS = [
     }]
 
 const BOOK_KEY = 'bookDB'
-const REVIEW_KEY = 'reviewDB'
+
 _createBooks()
 
 export const bookService = {
@@ -521,7 +521,6 @@ function addReview(bookId, review) {
                 book.reviews = []
             }
             book.reviews.push(review)
-            console.log('book after review push', book)
             return storageService.put(BOOK_KEY, book)
         })
         .then(() => {
