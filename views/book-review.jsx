@@ -34,7 +34,7 @@ export function BookReview({ bookId, reviews, setReviews }) {
     }
 
     return (
-        <div>
+        <div className='div-reviews-inputs'>
             <label>name</label>
             <input type="text" ref={nameRef} />
             <label htmlFor="">Rating</label>
