@@ -76,11 +76,11 @@ export function BookDetails() {
     function deleteReview(idx) {
         setReviews(reviews.filter((review, index) => index !== idx));
         const loadReviews = utilService.loadFromStorage('bookDB')
-        console.log(loadReviews )
+        console.log(loadReviews)
         const loadBook = loadReviews.find((book) => {
             console.log(params.bookId)
             console.log(book.id)
-            
+
             return params.bookId === book.id
         })
         loadBook.reviews.splice(idx, 1)
@@ -103,8 +103,8 @@ export function BookDetails() {
             </section>
 
             <section className="book-title">
-                <h1>{book.title}</h1>
-                <h2>{book.subtitle}</h2>
+                <h1>Name: {book.title}</h1>
+                <h2>Subtitle: {book.subtitle}</h2>
             </section>
 
             <section className="book-author">
@@ -143,7 +143,14 @@ export function BookDetails() {
 
 
                 </h5>
+                <button onClick={onBack}>Back</button>
+            </section>
 
+            <section>
+                <BookReview bookId={params.bookId} reviews={reviews} setReviews={setReviews} />
+            </section>
+
+            <section className='reviews-submit'>
                 <ul>
                     {reviews.map((review, idx) => (
                         <li key={idx}>
@@ -152,20 +159,21 @@ export function BookDetails() {
                         </li>
                     ))}
                 </ul>
+            </section>
 
-                <BookReview bookId={params.bookId} reviews={reviews} setReviews={setReviews} />
-
+            <section className='section-reviews'>
                 {isReviews === true && renderTheReviews.map((review, idx) => {
                     return (
-                        <li key={idx}>
-                            {review.name} gave this book a rating of {review.rate} on {review.date}
-                            
-                        </li>
+                        <ul>
+                            <li key={idx}>
+                                {review.name} gave this book a rating of {review.rate} on {review.date}
+
+                            </li>
+                        </ul>
                     )
                 })}
             </section>
 
-            <button onClick={onBack}>Back</button>
         </section>
     )
 
