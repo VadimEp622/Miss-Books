@@ -2,12 +2,13 @@ const { useEffect, useState } = React
 const { useParams, useNavigate } = ReactRouterDOM
 
 import { bookService } from "../services/book.service.js"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
+
 
 export function BookEdit() {
     const [bookToEdit, setBookToEdit] = useState(bookService.getEmptyBook())
     const { bookId } = useParams()
     const navigate = useNavigate()
-
 
     useEffect(() => {
         if (bookId) loadBook()
@@ -17,15 +18,15 @@ export function BookEdit() {
         console.log('bookToEdit', bookToEdit)
     }, [bookToEdit])
 
-
-
-
-
     function loadBook() {
         bookService.get(bookId)
-            .then(setBookToEdit)
+            .then(book => {
+                showSuccessMsg('loaded Book Successfully')
+                setBookToEdit(book)
+            })
             .catch(err => {
-                console.log('Had issued in book edit:', err);
+                console.log('Had issues in book edit', err)
+                showErrorMsg('Had issues in book edit')
                 navigate('/book')
             })
     }
@@ -52,7 +53,12 @@ export function BookEdit() {
         console.log('bookToEdit', bookToEdit)
         bookService.save(bookToEdit)
             .then(() => {
+                showSuccessMsg('Book Saved!')
                 navigate('/book')
+            })
+            .catch(err => {
+                console.log('Could Not Save Book', err)
+                showErrorMsg('Could Not Save Book')
             })
     }
 

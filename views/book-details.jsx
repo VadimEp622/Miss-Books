@@ -5,6 +5,7 @@ import { utilService } from '../services/util.service.js'
 import { bookService } from '../services/book.service.js'
 import { LongTxt } from '../cmps/long-txt.jsx'
 import { BookReview } from './book-review.jsx'
+import { showErrorMsg } from '../services/event-bus.service.js'
 
 
 export function BookDetails() {
@@ -26,7 +27,8 @@ export function BookDetails() {
         bookService.get(params.bookId)
             .then(setBook)
             .catch(err => {
-                console.log('Had issued in book details', err)
+                console.log('Had issues in book details', err)
+                showErrorMsg('Had issues in book details')
                 navigate('/book')
             })
     }

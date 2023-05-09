@@ -22,11 +22,16 @@ export function BookIndex() {
     }
 
     function onRemoveBook(bookId) {
-        bookService.remove(bookId).then(() => {
-            const updatedBooks = books.filter(book => book.id !== bookId)
-            setBooks(updatedBooks)
-            showSuccessMsg(`Book (${bookId}) removed!`)
-        })
+        bookService.remove(bookId)
+            .then(() => {
+                const updatedBooks = books.filter(book => book.id !== bookId)
+                setBooks(updatedBooks)
+                showSuccessMsg(`Book (${bookId}) removed!`)
+            })
+            .catch((err) => {
+                console.log('Error Removing Book', err)
+                showErrorMsg('Error Removing Book')
+            })
     }
 
     function onSetFilter(filterBy) {
