@@ -9,6 +9,8 @@ import { Home } from "./views/home.jsx"
 import { BookIndex } from "./views/book-index.jsx"
 import { BookEdit } from './views/book-edit.jsx'
 import { BookDetails } from "./views/book-details.jsx"
+import { UserMsg } from "./cmps/user-msg.jsx"
+
 
 export function App() {
 
@@ -35,6 +37,7 @@ export function App() {
                         <Route path="/book/edit" element={<BookEdit />} />
                     </Routes>
                 </main>
+                <UserMsg />
             </section>
         </Router>
     )
