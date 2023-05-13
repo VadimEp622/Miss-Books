@@ -548,13 +548,14 @@ function getDefaultFilter() {
 }
 
 // handle adding new books from google api 
-function getGoogleBooks() {
-    return axios.get('https://www.googleapis.com/books/v1/volumes?printType=books&q=effective%20')
+function getGoogleBooks(searchQuery) {
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=effective%20${searchQuery}`)
         .then((res) => {
             return res.data
         })
         .catch((err) => console.log(err))
 }
+
 
 
 //------PRIVATE FUNCTIONS------//

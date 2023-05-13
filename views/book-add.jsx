@@ -2,30 +2,51 @@ const { useState, useEffect, useRef } = React
 
 import { bookService } from "../services/book.service.js"
 import { utilService } from "../services/util.service.js"
-import {  storageService  } from "../services/async-storage.service.js"
-import { BookAddFilter } from "../cmps/book-add-filter.jsx"
-
+import { storageService } from "../services/async-storage.service.js"
 
 export function BookAdd() {
+
     const [googleBooks, setGoogleBooks] = useState(null)
     const [bookToEdit, setBookToEdit] = useState({})
+    const [searchQuery, setSearchQuery] = useState('');
 
-    useEffect(() => {
-        handleBookSearch()
 
-    }, [])
+    const delayedHandleBookSearch = useRef(debounce((q) => handleBookSearch(q), 500)).current;
+
+    function debounce(func, wait) {
+        let timeout;
+
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
 
     useEffect(() => {
         
-    }, [bookToEdit]);
+    }, [searchQuery]);
 
-    function handleBookSearch() {
-        bookService.getGoogleBooks()
+    function handleBookSearch(searchQuery) {
+        bookService.getGoogleBooks(searchQuery)
             .then((res) => {
                 setGoogleBooks(res.items)
             })
             .catch((err) => console.log(err))
     }
+
+    function handleBookSearch(searchQuery) {
+        bookService.getGoogleBooks(searchQuery)
+            .then((res) => {
+                setGoogleBooks(res.items)
+            })
+            .catch((err) => console.log(err))
+    }
+
 
     function onAddBook(book) {
         console.log('click', book)
@@ -48,15 +69,18 @@ export function BookAdd() {
         storageService.post('bookDB', newBook)
             .then(() => console.log('New google book added'))
             .catch((err) => console.log(err))
-    }
 
+    }
 
     console.log('googlebooks', googleBooks)
     return (
         <section>
             <h1>Add new book from google library </h1>
-            {/* maxLength=1 temporary protection until debounce implemented */}
-            <input type="search" maxLength={1} />
+
+            <input type="search" value={searchQuery} onChange={(e) => {
+                setSearchQuery(e.target.value);
+                delayedHandleBookSearch(e.target.value);
+            }} />
 
             {googleBooks ? (
                 <ul>
@@ -68,8 +92,9 @@ export function BookAdd() {
                     ))}
                 </ul>
             ) : (
-                <p>search book</p>
+                <p>Search book</p>
             )}
         </section>
     )
+
 }
