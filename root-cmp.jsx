@@ -1,5 +1,3 @@
-const { useState } = React
-
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route } = ReactRouterDOM
 
@@ -16,18 +14,10 @@ import { BookAdd } from "./views/book-add.jsx"
 
 export function App() {
 
-    const [page, setPage] = useState('book')
-
-
-    function handlePageChange(page) {
-        setPage(page)
-    }
-
     return (
         <Router>
             <section className="app main-layout">
-
-                <AppHeader handlePageChange={handlePageChange} />
+                <AppHeader />
 
                 <main>
                     <Routes>
