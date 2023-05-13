@@ -13,7 +13,6 @@ import { BookDetails } from "./views/book-details.jsx"
 import { BookAdd } from "./views/book-add.jsx"
 
 export function App() {
-
     return (
         <Router>
             <section className="app main-layout">
