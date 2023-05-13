@@ -547,8 +547,9 @@ function getDefaultFilter() {
     return { name: '', price: '' }
 }
 
-function getGoogleBooks(searchQuery) {
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchQuery}`)
+// handle adding new books from google api 
+function getGoogleBooks() {
+    return axios.get('https://www.googleapis.com/books/v1/volumes?printType=books&q=effective%20')
         .then((res) => {
             return res.data
         })

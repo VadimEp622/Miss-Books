@@ -2,36 +2,25 @@ const { useState, useEffect, useRef } = React
 
 import { bookService } from "../services/book.service.js"
 import { utilService } from "../services/util.service.js"
-import { storageService } from "../services/async-storage.service.js"
+import {  storageService  } from "../services/async-storage.service.js"
+import { BookAddFilter } from "../cmps/book-add-filter.jsx"
 
 
 export function BookAdd() {
-
     const [googleBooks, setGoogleBooks] = useState(null)
     const [bookToEdit, setBookToEdit] = useState({})
-    const [searchQuery, setSearchQuery] = useState('');
-    const delayedHandleBookSearch = useRef(debounce((q) => handleBookSearch(q), 500)).current;
-
-    function debounce(func, wait) {
-        let timeout;
-      
-        return function executedFunction(...args) {
-          const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-          };
-      
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-        };
-      }
 
     useEffect(() => {
-        handleBookSearch(searchQuery);
-    }, [searchQuery]);
+        handleBookSearch()
 
-    function handleBookSearch(searchQuery) {
-        bookService.getGoogleBooks(searchQuery)
+    }, [])
+
+    useEffect(() => {
+        
+    }, [bookToEdit]);
+
+    function handleBookSearch() {
+        bookService.getGoogleBooks()
             .then((res) => {
                 setGoogleBooks(res.items)
             })
@@ -59,19 +48,15 @@ export function BookAdd() {
         storageService.post('bookDB', newBook)
             .then(() => console.log('New google book added'))
             .catch((err) => console.log(err))
-
     }
+
 
     console.log('googlebooks', googleBooks)
     return (
         <section>
             <h1>Add new book from google library </h1>
             {/* maxLength=1 temporary protection until debounce implemented */}
-
-            <input type="search" value={searchQuery} onChange={(e) => {
-                setSearchQuery(e.target.value);
-                delayedHandleBookSearch(e.target.value);
-            }} />
+            <input type="search" maxLength={1} />
 
             {googleBooks ? (
                 <ul>
