@@ -542,38 +542,18 @@ function addReview(bookId, review) {
         })
 }
 
-//THIS IS NOT GOOD:
-// function addReview(bookId, review) {
-//     return storageService.get(BOOK_KEY, bookId)
-//         .then((book) => {
-//             if (!book.reviews) {
-//                 book.reviews = []
-//             }
-//             book.reviews.push(review)
-//             return storageService.put(BOOK_KEY, book)
-//         })
-//         .then(() => {
-//             console.log('Review added successfully')
-//         })
-//         .catch((err) => {
-//             console.log('Failed to add review', err)
-//         })
-// }
-
 
 function getDefaultFilter() {
     return { name: '', price: '' }
 }
 
-// handle adding new books from google api 
-function getGoogleBooks() {
-    return axios.get('https://www.googleapis.com/books/v1/volumes?printType=books&q=effective%20')
+function getGoogleBooks(searchQuery) {
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchQuery}`)
         .then((res) => {
             return res.data
         })
         .catch((err) => console.log(err))
 }
-
 
 
 //------PRIVATE FUNCTIONS------//

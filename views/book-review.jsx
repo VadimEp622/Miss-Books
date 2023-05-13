@@ -39,26 +39,6 @@ export function BookReview({ bookId, reviews, setReviews }) {
             })
     }
 
-    //THIS IS NOT GOOD:
-    // async function onSubmitReview() {
-    //     if (!bookId) return
-    //     const idBook = bookId
-    //     const name = nameRef.current.value
-    //     const rate = rateRef.current.value
-    //     const date = dateRef.current.value
-    //     const review = {
-    //         idBook,
-    //         name,
-    //         rate,
-    //         date,
-    //     }
-    //     try {
-    //         await bookService.addReview(idBook, review)
-    //         setReviews([...reviews, review])
-    //     } catch (err) {
-    //         console.log('Error adding review', err)
-    //     }
-    // }
 
     return (
         <div className='div-reviews-inputs'>
